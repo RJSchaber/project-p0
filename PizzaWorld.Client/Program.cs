@@ -1,35 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using PizzaWorld.Domain.Models;
+using PizzaWorld.Domain.Singletons;
 
 namespace PizzaWorld.Client
 {
     class Program
     {
+        private static readonly ClientSingleton _client = ClientSingleton.Instance; 
+
+        // private readonly ClientSingleton _client2;
+
+        // public Program()
+        // {
+        //     _client2 = ClientSingleton.Instance;
+        // }
+
         static void Main(string[] args)
         {
-            var cs = ClientSingleton.Instance;
+            // _client.MakeStore();
 
-            cs.MakeStore();
+            // var p = new Program();
+            // p._client2.MakeStore();
             
-            PrintAllStores();
-        }
+            // PrintAllStores();
+            // System.Console.WriteLine(_client.SelectStore());
 
-        static IEnumerable<Store> GetAllStores()
-        {
-            return new List<Store>()
-            {
-                new Store()
-            };
-
+            UserView();
         }
 
         static void PrintAllStores()
         {
-            foreach(var store in GetAllStores())
+            foreach(var store in _client.Stores)
             {
                 Console.WriteLine(store);
             }
+        }
+
+        static void UserView()
+        {
+            var user = new User();
+
+            PrintAllStores();
+
+            user.SelectedStore = _client.SelectStore();
+            user.SelectedStore.CreateOrder();
+            user.Orders.Add(user.SelectedStore.Orders.Last());
+            user.Orders.Last().MakeMeatPizza();
+            user.Orders.Last().MakeMeatPizza();
+
+            Console.WriteLine(user);
         }
 
     }
