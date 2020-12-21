@@ -26,5 +26,12 @@ namespace PizzaWorld.Domain.Models
             }
             
         }
+
+        public void ListPizzas()
+        {
+            
+        }
+
+
     }
 }

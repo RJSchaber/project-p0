@@ -3,16 +3,16 @@ using PizzaWorld.Domain.Abstracts;
 
 namespace PizzaWorld.Domain.Models
 {
-    public class MeatPizza : APizzaModel
+    public class BuffaloChickenPizza : APizzaModel
     {
         protected override void AddCrust()
         {
-            Crust = "regular";
+            Crust = "garlic";
         }
 
         protected override void AddSize()
         {
-            Size = "Small";
+            Size = "Medium";
         }
 
         protected override void AddToppings()
@@ -21,8 +21,8 @@ namespace PizzaWorld.Domain.Models
             {
                 "cheese",
                 "tomato",
-                "sausage",
-                "pepperoni",
+                "hot sauce",
+                "ranch",
                 "chicken"
             };
         }
